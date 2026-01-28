@@ -252,6 +252,40 @@ function M.load()
 		LspCodeLens = { fg = p.foreground_dim, italic = true },
 
 		-- ========================================================================
+		-- LSP SEMANTIC TOKENS (for C#, TypeScript, Rust, etc.)
+		-- ========================================================================
+		["@lsp.type.class"] = { fg = p.foreground_soft },
+		["@lsp.type.decorator"] = { fg = p.hint_purple },
+		["@lsp.type.enum"] = { fg = p.foreground_soft },
+		["@lsp.type.enumMember"] = { fg = p.warning_yellow },
+		["@lsp.type.function"] = { fg = p.foreground_dim, bold = true },
+		["@lsp.type.interface"] = { fg = p.foreground_soft },
+		["@lsp.type.macro"] = { fg = p.hint_purple },
+		["@lsp.type.method"] = { fg = p.foreground_dim, bold = true },
+		["@lsp.type.namespace"] = { fg = p.foreground_soft },
+		["@lsp.type.parameter"] = { fg = p.parameter_orange },
+		["@lsp.type.property"] = { fg = p.property_pink },
+		["@lsp.type.struct"] = { fg = p.foreground_soft },
+		["@lsp.type.type"] = { fg = p.foreground_soft },
+		["@lsp.type.typeParameter"] = { fg = p.foreground_soft },
+		["@lsp.type.variable"] = { fg = p.variable_blue },
+
+		-- C# specific
+		["@lsp.type.field"] = { fg = p.property_pink },
+		["@lsp.type.event"] = { fg = p.warning_yellow },
+		["@lsp.type.modifier"] = { fg = p.purple_dark, bold = true },
+
+		-- Modifiers
+		["@lsp.mod.readonly"] = { italic = true },
+		["@lsp.mod.static"] = { bold = true },
+		["@lsp.mod.deprecated"] = { strikethrough = true },
+
+		-- TypeParameter combinations
+		["@lsp.typemod.variable.readonly"] = { fg = p.warning_yellow },
+		["@lsp.typemod.property.readonly"] = { fg = p.property_pink, italic = true },
+		["@lsp.typemod.variable.static"] = { fg = p.variable_blue, bold = true },
+
+		-- ========================================================================
 		-- GIT SIGNS
 		-- ========================================================================
 		GitSignsAdd = { fg = p.info_cyan },
