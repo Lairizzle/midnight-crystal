@@ -1,5 +1,5 @@
 -- ============================================================================
--- Midnight Crystal - A beautiful Neovim colorscheme
+-- Midnight Crystal
 -- ============================================================================
 
 local M = {}
@@ -8,22 +8,24 @@ local M = {}
 -- PALETTE
 -- ============================================================================
 M.palette = {
-	background = "#271224", -- AFFECTS: Editor background, normal text background
-	background_alt = "#291E37", -- AFFECTS: Floating windows, popups, file tree background
-	foreground = "#6391D8", -- AFFECTS: Normal text, variables, identifiers
-	foreground_dim = "#8FB3FF", -- AFFECTS: **FUNCTIONS** (swapped), methods, constructors
-	foreground_soft = "#9A8FEF", -- AFFECTS: **COMMENTS** (swapped), types, structures
-	accent_primary = "#6391D8", -- AFFECTS: Operators, special chars, current line number
-	accent_secondary = "#493961", -- AFFECTS: Line numbers, borders, indent guides
-	accent_muted = "#3D355F", -- AFFECTS: Visual selection, search highlight background
-	purple_dark = "#BB9AF7", -- AFFECTS: Keywords (if, for, function, return, class, def)
-	indigo_shadow = "#3D355F", -- AFFECTS: (same as accent_muted)
-	plum_black = "#3B2A46", -- AFFECTS: Status line, folded text background
-	deep_maroon = "#361B30", -- AFFECTS: Cursor line, tab line fill
-	error_red = "#F7768E", -- AFFECTS: Errors, delete operations, exceptions
-	warning_yellow = "#E0AF68", -- AFFECTS: Numbers, booleans, constants, warnings
-	info_cyan = "#73daca", -- AFFECTS: Strings, character literals, info messages
-	hint_purple = "#BB9AF7", -- AFFECTS: Macros, preprocessor, hints, TODO comments
+	background = "#271224", -- AFFECTS: Editor background
+	background_alt = "#291E37", -- AFFECTS: Floating windows, popups
+	foreground = "#C0CAF5", -- AFFECTS: Normal text (BRIGHTENED!)
+	foreground_dim = "#8FB3FF", -- AFFECTS: **FUNCTIONS** (bright blue, bold)
+	foreground_soft = "#9A8FEF", -- AFFECTS: **COMMENTS** (purple, italic) + Types
+	accent_primary = "#7DCFFF", -- AFFECTS: **OPERATORS** (bright cyan!)
+	accent_secondary = "#493961", -- AFFECTS: Line numbers, borders
+	accent_muted = "#3D355F", -- AFFECTS: Visual selection
+	purple_dark = "#BB9AF7", -- AFFECTS: **KEYWORDS** (if/for/function/void)
+	plum_black = "#3B2A46", -- AFFECTS: Status line
+	deep_maroon = "#361B30", -- AFFECTS: Cursor line
+	error_red = "#F7768E", -- AFFECTS: Errors
+	warning_yellow = "#E0AF68", -- AFFECTS: Numbers, booleans
+	info_cyan = "#73daca", -- AFFECTS: **STRINGS** (cyan)
+	hint_purple = "#BB9AF7", -- AFFECTS: Macros, hints
+	variable_blue = "#89B4FA", -- AFFECTS: **VARIABLES** (light blue)
+	parameter_orange = "#FAB387", -- AFFECTS: **PARAMETERS** (peach/orange)
+	property_pink = "#F5C2E7", -- AFFECTS: **PROPERTIES/FIELDS** (pink)
 }
 
 -- ============================================================================
@@ -122,7 +124,7 @@ function M.load()
 		Boolean = { fg = p.warning_yellow, bold = true },
 		Float = { fg = p.warning_yellow },
 
-		Identifier = { fg = p.foreground },
+		Identifier = { fg = p.variable_blue },
 		Function = { fg = p.foreground_dim, bold = true },
 
 		Statement = { fg = p.purple_dark, bold = true },
@@ -192,11 +194,11 @@ function M.load()
 		["@function.builtin"] = { fg = p.foreground_dim, bold = true },
 		["@function.call"] = { fg = p.foreground_dim },
 		["@function.macro"] = { fg = p.hint_purple },
-		["@parameter"] = { fg = p.foreground },
+		["@parameter"] = { fg = p.parameter_orange },
 		["@method"] = { fg = p.foreground_dim, bold = true },
 		["@method.call"] = { fg = p.foreground_dim },
-		["@field"] = { fg = p.foreground },
-		["@property"] = { fg = p.foreground },
+		["@field"] = { fg = p.property_pink },
+		["@property"] = { fg = p.property_pink },
 		["@constructor"] = { fg = p.foreground_dim, bold = true },
 
 		["@conditional"] = { fg = p.purple_dark, bold = true },
@@ -209,7 +211,7 @@ function M.load()
 		["@keyword.return"] = { fg = p.purple_dark, bold = true },
 		["@exception"] = { fg = p.error_red, bold = true },
 
-		["@variable"] = { fg = p.foreground },
+		["@variable"] = { fg = p.variable_blue },
 		["@variable.builtin"] = { fg = p.warning_yellow },
 		["@type"] = { fg = p.foreground_soft },
 		["@type.definition"] = { fg = p.foreground_soft },
@@ -317,13 +319,13 @@ function M.load()
 		CmpItemAbbrDeprecated = { fg = p.accent_muted, strikethrough = true },
 		CmpItemAbbrMatch = { fg = p.accent_primary, bold = true },
 		CmpItemAbbrMatchFuzzy = { fg = p.accent_primary },
-		CmpItemKindVariable = { fg = p.foreground },
+		CmpItemKindVariable = { fg = p.variable_blue },
 		CmpItemKindInterface = { fg = p.foreground_soft },
 		CmpItemKindText = { fg = p.foreground },
-		CmpItemKindFunction = { fg = p.foreground_soft },
-		CmpItemKindMethod = { fg = p.foreground_soft },
+		CmpItemKindFunction = { fg = p.foreground_dim },
+		CmpItemKindMethod = { fg = p.foreground_dim },
 		CmpItemKindKeyword = { fg = p.purple_dark },
-		CmpItemKindProperty = { fg = p.foreground },
+		CmpItemKindProperty = { fg = p.property_pink },
 		CmpItemKindUnit = { fg = p.warning_yellow },
 		CmpItemKindClass = { fg = p.foreground_soft },
 		CmpItemKindConstant = { fg = p.warning_yellow },
@@ -331,7 +333,7 @@ function M.load()
 		CmpItemKindEnum = { fg = p.foreground_soft },
 		CmpItemKindStruct = { fg = p.foreground_soft },
 		CmpItemKindValue = { fg = p.warning_yellow },
-		CmpItemKindField = { fg = p.foreground },
+		CmpItemKindField = { fg = p.property_pink },
 		CmpItemKindModule = { fg = p.foreground_soft },
 
 		-- ========================================================================
