@@ -1,5 +1,5 @@
 -- ============================================================================
--- Midnight Crystal - A beautiful Neovim colorscheme
+-- Midnight Crystal
 -- ============================================================================
 
 local M = {}
@@ -8,26 +8,53 @@ local M = {}
 -- PALETTE
 -- ============================================================================
 M.palette = {
-	background = "#271224", -- main background
-	background_alt = "#291E37", -- floating windows
-	foreground = "#C0CAF5", -- main text (BRIGHTENED - was too drab)
-	foreground_dim = "#8FB3FF", -- functions
-	foreground_soft = "#9A8FEF", -- comments, types
-	accent_primary = "#7DCFFF", -- operators (BRIGHTENED cyan/blue)
-	accent_secondary = "#493961", -- secondary accent
-	accent_muted = "#3D355F", -- muted accent / visual selection
-	purple_dark = "#BB9AF7", -- keywords (function/end/return)
-	indigo_shadow = "#3D355F",
-	plum_black = "#3B2A46",
-	deep_maroon = "#361B30",
-	error_red = "#F7768E",
-	warning_yellow = "#E0AF68",
-	info_cyan = "#73daca",
-	hint_purple = "#BB9AF7",
-	-- NEW COLORS for better contrast:
-	variable_blue = "#89B4FA", -- variables, identifiers
-	parameter_orange = "#FAB387", -- function parameters
-	property_pink = "#F5C2E7", -- object properties, fields
+	-- ========================================================================
+	-- BACKGROUND COLORS
+	-- ========================================================================
+	background = "#271224", -- Main editor background (dark purple-black)
+	background_alt = "#291E37", -- Floating windows, popups, sidebars, file explorers (slightly lighter purple)
+
+	-- ========================================================================
+	-- FOREGROUND / TEXT COLORS
+	-- ========================================================================
+	foreground = "#C0CAF5", -- Default text color, normal code (bright lavender-white)
+	foreground_dim = "#8FB3FF", -- Function names, method names (bright blue)
+	foreground_soft = "#9A8FEF", -- Comments, less important text (purple with italic)
+
+	-- ========================================================================
+	-- ACCENT COLORS (UI ELEMENTS)
+	-- ========================================================================
+	accent_primary = "#7DCFFF", -- Operators (+, -, =, .), current line number, selections (bright cyan)
+	accent_secondary = "#493961", -- Line numbers, borders, separators (muted purple)
+	accent_muted = "#3D355F", -- Visual selection background, inactive elements (dark muted purple)
+
+	-- ========================================================================
+	-- KEYWORDS & CONTROL FLOW
+	-- ========================================================================
+	purple_dark = "#BB9AF7", -- Keywords: if, for, while, function, class, return, public, void, etc. (purple, bold)
+
+	-- ========================================================================
+	-- UI DECORATION COLORS
+	-- ========================================================================
+	indigo_shadow = "#3D355F", -- Shadow effects, inactive backgrounds (same as accent_muted)
+	plum_black = "#3B2A46", -- Status line, folded code background (dark plum)
+	deep_maroon = "#361B30", -- Current line highlight, tab fills (very dark maroon)
+
+	-- ========================================================================
+	-- DIAGNOSTIC / STATUS COLORS
+	-- ========================================================================
+	error_red = "#F7768E", -- Errors, exceptions, delete operations (bright red)
+	warning_yellow = "#E0AF68", -- Warnings, numbers, booleans, constants (warm yellow-orange)
+	info_cyan = "#73daca", -- Strings, info messages, added lines (teal-cyan)
+	hint_purple = "#BB9AF7", -- Hints, TODOs, macros, preprocessor (purple)
+
+	-- ========================================================================
+	-- SEMANTIC SYNTAX COLORS (for code elements)
+	-- ========================================================================
+	variable_blue = "#89B4FA", -- Variables, identifiers, local vars (light blue)
+	parameter_orange = "#FAB387", -- Function parameters, arguments (peach/coral orange)
+	property_pink = "#F5C2E7", -- Object properties, fields, attributes (soft pink)
+	type_teal = "#2AC3DE", -- Types, classes, interfaces, structs, namespaces (bright teal - high contrast!)
 }
 
 -- ============================================================================
@@ -44,11 +71,6 @@ function M.setup(opts)
 
 	vim.g.colors_name = "midnight-crystal"
 	vim.o.termguicolors = true
-
-	-- CRITICAL: Lower semantic token priority so Treesitter colors are used
-	-- LSP semantic tokens default to priority 125, Treesitter is 100
-	-- By setting this to 95, Treesitter will win
-	vim.highlight.priorities.semantic_tokens = 95
 
 	M.load()
 end
@@ -148,10 +170,10 @@ function M.load()
 		Macro = { fg = p.hint_purple },
 		PreCondit = { fg = p.hint_purple },
 
-		Type = { fg = p.foreground_soft },
+		Type = { fg = p.type_teal },
 		StorageClass = { fg = p.purple_dark, bold = true },
-		Structure = { fg = p.foreground_soft },
-		Typedef = { fg = p.foreground_soft },
+		Structure = { fg = p.type_teal },
+		Typedef = { fg = p.type_teal },
 
 		Special = { fg = p.accent_primary },
 		SpecialChar = { fg = p.warning_yellow },
@@ -220,12 +242,12 @@ function M.load()
 
 		["@variable"] = { fg = p.variable_blue },
 		["@variable.builtin"] = { fg = p.warning_yellow },
-		["@type"] = { fg = p.foreground_soft },
-		["@type.definition"] = { fg = p.foreground_soft },
-		["@type.builtin"] = { fg = p.foreground_soft, bold = true },
+		["@type"] = { fg = p.type_teal },
+		["@type.definition"] = { fg = p.type_teal },
+		["@type.builtin"] = { fg = p.type_teal, bold = true },
 		["@type.qualifier"] = { fg = p.purple_dark, bold = true },
 		["@storageclass"] = { fg = p.purple_dark, bold = true },
-		["@namespace"] = { fg = p.foreground_soft },
+		["@namespace"] = { fg = p.type_teal },
 		["@include"] = { fg = p.hint_purple, bold = true },
 		["@preproc"] = { fg = p.hint_purple },
 		["@debug"] = { fg = p.error_red },
@@ -270,26 +292,26 @@ function M.load()
 		["@lsp.type.enumMember"] = { link = "@constant" },
 		["@lsp.type.escapeSequence"] = { link = "@string.escape" },
 		["@lsp.type.formatSpecifier"] = { link = "@punctuation.special" },
-		["@lsp.type.interface"] = { fg = p.foreground_soft },
+		["@lsp.type.interface"] = { fg = p.type_teal },
 		["@lsp.type.keyword"] = { link = "@keyword" },
 		["@lsp.type.namespace"] = { link = "@module" },
 		["@lsp.type.number"] = { link = "@number" },
 		["@lsp.type.operator"] = { link = "@operator" },
-		["@lsp.type.parameter"] = { link = "@parameter" },
-		["@lsp.type.property"] = { link = "@property" },
+		["@lsp.type.parameter"] = { fg = p.parameter_orange },
+		["@lsp.type.property"] = { fg = p.property_pink },
 		["@lsp.type.selfKeyword"] = { link = "@variable.builtin" },
 		["@lsp.type.selfTypeKeyword"] = { link = "@variable.builtin" },
 		["@lsp.type.string"] = { link = "@string" },
 		["@lsp.type.typeAlias"] = { link = "@type.definition" },
 		["@lsp.type.unresolvedReference"] = { undercurl = true, sp = p.error_red },
-		["@lsp.type.variable"] = {}, -- Use treesitter styles for regular variables
-		["@lsp.type.function"] = { link = "@function" },
-		["@lsp.type.method"] = { link = "@method" },
-		["@lsp.type.struct"] = { link = "@structure" },
-		["@lsp.type.type"] = { link = "@type" },
-		["@lsp.type.typeParameter"] = { link = "@type.definition" },
-		["@lsp.type.class"] = { link = "@type" },
-		["@lsp.type.field"] = { link = "@field" },
+		["@lsp.type.variable"] = { fg = p.variable_blue }, -- EXPLICIT color instead of {}
+		["@lsp.type.function"] = { fg = p.foreground_dim, bold = true },
+		["@lsp.type.method"] = { fg = p.foreground_dim, bold = true },
+		["@lsp.type.struct"] = { fg = p.type_teal },
+		["@lsp.type.type"] = { fg = p.type_teal },
+		["@lsp.type.typeParameter"] = { fg = p.type_teal },
+		["@lsp.type.class"] = { fg = p.type_teal },
+		["@lsp.type.field"] = { fg = p.property_pink },
 		["@lsp.type.event"] = { fg = p.warning_yellow },
 		["@lsp.type.macro"] = { link = "@macro" },
 
@@ -361,10 +383,10 @@ function M.load()
 		NvimTreeNormal = { fg = p.foreground, bg = p.background_alt },
 		NvimTreeNormalNC = { fg = p.foreground, bg = p.background_alt },
 		NvimTreeRootFolder = { fg = p.accent_primary, bold = true },
-		NvimTreeFolderName = { fg = p.foreground_soft },
+		NvimTreeFolderName = { fg = p.type_teal },
 		NvimTreeFolderIcon = { fg = p.accent_primary },
 		NvimTreeEmptyFolderName = { fg = p.foreground_dim },
-		NvimTreeOpenedFolderName = { fg = p.foreground_soft, bold = true },
+		NvimTreeOpenedFolderName = { fg = p.type_teal, bold = true },
 		NvimTreeSymlink = { fg = p.info_cyan },
 		NvimTreeExecFile = { fg = p.warning_yellow, bold = true },
 		NvimTreeOpenedFile = { fg = p.foreground, bold = true },
@@ -395,21 +417,21 @@ function M.load()
 		CmpItemAbbrMatch = { fg = p.accent_primary, bold = true },
 		CmpItemAbbrMatchFuzzy = { fg = p.accent_primary },
 		CmpItemKindVariable = { fg = p.variable_blue },
-		CmpItemKindInterface = { fg = p.foreground_soft },
+		CmpItemKindInterface = { fg = p.type_teal },
 		CmpItemKindText = { fg = p.foreground },
 		CmpItemKindFunction = { fg = p.foreground_dim },
 		CmpItemKindMethod = { fg = p.foreground_dim },
 		CmpItemKindKeyword = { fg = p.purple_dark },
 		CmpItemKindProperty = { fg = p.property_pink },
 		CmpItemKindUnit = { fg = p.warning_yellow },
-		CmpItemKindClass = { fg = p.foreground_soft },
+		CmpItemKindClass = { fg = p.type_teal },
 		CmpItemKindConstant = { fg = p.warning_yellow },
 		CmpItemKindSnippet = { fg = p.hint_purple },
-		CmpItemKindEnum = { fg = p.foreground_soft },
-		CmpItemKindStruct = { fg = p.foreground_soft },
+		CmpItemKindEnum = { fg = p.type_teal },
+		CmpItemKindStruct = { fg = p.type_teal },
 		CmpItemKindValue = { fg = p.warning_yellow },
 		CmpItemKindField = { fg = p.property_pink },
-		CmpItemKindModule = { fg = p.foreground_soft },
+		CmpItemKindModule = { fg = p.type_teal },
 
 		-- ========================================================================
 		-- INDENT-BLANKLINE
@@ -511,8 +533,12 @@ function M.load()
 		markdownItalic = { italic = true },
 	}
 
-	-- Apply all highlights
+	-- Apply all highlights (convert string links to proper tables like TokyoNight)
 	for group, settings in pairs(highlights) do
+		-- Convert string links to link tables
+		if type(settings) == "string" then
+			settings = { link = settings }
+		end
 		vim.api.nvim_set_hl(0, group, settings)
 	end
 end
