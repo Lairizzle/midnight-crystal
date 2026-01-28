@@ -18,7 +18,7 @@ M.palette = {
 	-- FOREGROUND / TEXT COLORS
 	-- ========================================================================
 	foreground = "#C0CAF5", -- Default text color, normal code (bright lavender-white)
-	foreground_dim = "#7AA2F7", -- Function names, method names (bright blue)
+	foreground_dim = "#61AFEF", -- Function names, method names (bright blue)
 	foreground_soft = "#9A8FEF", -- Comments, less important text (purple with italic)
 
 	-- ========================================================================
