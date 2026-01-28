@@ -8,24 +8,26 @@ local M = {}
 -- PALETTE
 -- ============================================================================
 M.palette = {
-	background = "#271224", -- AFFECTS: Editor background
-	background_alt = "#291E37", -- AFFECTS: Floating windows, popups
-	foreground = "#C0CAF5", -- AFFECTS: Normal text (BRIGHTENED!)
-	foreground_dim = "#8FB3FF", -- AFFECTS: **FUNCTIONS** (bright blue, bold)
-	foreground_soft = "#9A8FEF", -- AFFECTS: **COMMENTS** (purple, italic) + Types
-	accent_primary = "#7DCFFF", -- AFFECTS: **OPERATORS** (bright cyan!)
-	accent_secondary = "#493961", -- AFFECTS: Line numbers, borders
-	accent_muted = "#3D355F", -- AFFECTS: Visual selection
-	purple_dark = "#BB9AF7", -- AFFECTS: **KEYWORDS** (if/for/function/void)
-	plum_black = "#3B2A46", -- AFFECTS: Status line
-	deep_maroon = "#361B30", -- AFFECTS: Cursor line
-	error_red = "#F7768E", -- AFFECTS: Errors
-	warning_yellow = "#E0AF68", -- AFFECTS: Numbers, booleans
-	info_cyan = "#73daca", -- AFFECTS: **STRINGS** (cyan)
-	hint_purple = "#BB9AF7", -- AFFECTS: Macros, hints
-	variable_blue = "#89B4FA", -- AFFECTS: **VARIABLES** (light blue)
-	parameter_orange = "#FAB387", -- AFFECTS: **PARAMETERS** (peach/orange)
-	property_pink = "#F5C2E7", -- AFFECTS: **PROPERTIES/FIELDS** (pink)
+	background = "#271224", -- main background
+	background_alt = "#291E37", -- floating windows
+	foreground = "#C0CAF5", -- main text (BRIGHTENED - was too drab)
+	foreground_dim = "#8FB3FF", -- functions
+	foreground_soft = "#9A8FEF", -- comments, types
+	accent_primary = "#7DCFFF", -- operators (BRIGHTENED cyan/blue)
+	accent_secondary = "#493961", -- secondary accent
+	accent_muted = "#3D355F", -- muted accent / visual selection
+	purple_dark = "#BB9AF7", -- keywords (function/end/return)
+	indigo_shadow = "#3D355F",
+	plum_black = "#3B2A46",
+	deep_maroon = "#361B30",
+	error_red = "#F7768E",
+	warning_yellow = "#E0AF68",
+	info_cyan = "#73daca",
+	hint_purple = "#BB9AF7",
+	-- NEW COLORS for better contrast:
+	variable_blue = "#89B4FA", -- variables, identifiers
+	parameter_orange = "#FAB387", -- function parameters
+	property_pink = "#F5C2E7", -- object properties, fields
 }
 
 -- ============================================================================
@@ -42,6 +44,11 @@ function M.setup(opts)
 
 	vim.g.colors_name = "midnight-crystal"
 	vim.o.termguicolors = true
+
+	-- CRITICAL: Lower semantic token priority so Treesitter colors are used
+	-- LSP semantic tokens default to priority 125, Treesitter is 100
+	-- By setting this to 95, Treesitter will win
+	vim.highlight.priorities.semantic_tokens = 95
 
 	M.load()
 end
