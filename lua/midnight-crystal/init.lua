@@ -1,5 +1,5 @@
 -- ============================================================================
--- Midnight Crystal
+-- Midnight Crystal - A beautiful Neovim colorscheme
 -- ============================================================================
 
 local M = {}
@@ -252,55 +252,72 @@ function M.load()
 		LspCodeLens = { fg = p.foreground_dim, italic = true },
 
 		-- ========================================================================
-		-- LSP SEMANTIC TOKENS (for C#, TypeScript, Rust, etc.)
+		-- LSP SEMANTIC TOKENS (Proper linking approach)
 		-- ========================================================================
-		-- Standard LSP tokens
-		["@lsp.type.class"] = { fg = p.foreground_soft },
-		["@lsp.type.decorator"] = { fg = p.hint_purple },
-		["@lsp.type.enum"] = { fg = p.foreground_soft },
-		["@lsp.type.enumMember"] = { fg = p.warning_yellow },
-		["@lsp.type.function"] = { fg = p.foreground_dim, bold = true },
+		-- Link to Treesitter groups for consistency
+		["@lsp.type.boolean"] = { link = "@boolean" },
+		["@lsp.type.builtinType"] = { link = "@type.builtin" },
+		["@lsp.type.comment"] = { link = "@comment" },
+		["@lsp.type.decorator"] = { link = "@function" },
+		["@lsp.type.enum"] = { link = "@type" },
+		["@lsp.type.enumMember"] = { link = "@constant" },
+		["@lsp.type.escapeSequence"] = { link = "@string.escape" },
+		["@lsp.type.formatSpecifier"] = { link = "@punctuation.special" },
 		["@lsp.type.interface"] = { fg = p.foreground_soft },
-		["@lsp.type.macro"] = { fg = p.hint_purple },
-		["@lsp.type.method"] = { fg = p.foreground_dim, bold = true },
-		["@lsp.type.namespace"] = { fg = p.foreground_soft },
-		["@lsp.type.parameter"] = { fg = p.parameter_orange },
-		["@lsp.type.property"] = { fg = p.property_pink },
-		["@lsp.type.struct"] = { fg = p.foreground_soft },
-		["@lsp.type.type"] = { fg = p.foreground_soft },
-		["@lsp.type.typeParameter"] = { fg = p.foreground_soft },
-		["@lsp.type.variable"] = { fg = p.variable_blue },
-
-		-- C# specific (csharp_ls and OmniSharp)
-		["@lsp.type.field"] = { fg = p.property_pink },
+		["@lsp.type.keyword"] = { link = "@keyword" },
+		["@lsp.type.namespace"] = { link = "@module" },
+		["@lsp.type.number"] = { link = "@number" },
+		["@lsp.type.operator"] = { link = "@operator" },
+		["@lsp.type.parameter"] = { link = "@parameter" },
+		["@lsp.type.property"] = { link = "@property" },
+		["@lsp.type.selfKeyword"] = { link = "@variable.builtin" },
+		["@lsp.type.selfTypeKeyword"] = { link = "@variable.builtin" },
+		["@lsp.type.string"] = { link = "@string" },
+		["@lsp.type.typeAlias"] = { link = "@type.definition" },
+		["@lsp.type.unresolvedReference"] = { undercurl = true, sp = p.error_red },
+		["@lsp.type.variable"] = {}, -- Use treesitter styles for regular variables
+		["@lsp.type.function"] = { link = "@function" },
+		["@lsp.type.method"] = { link = "@method" },
+		["@lsp.type.struct"] = { link = "@structure" },
+		["@lsp.type.type"] = { link = "@type" },
+		["@lsp.type.typeParameter"] = { link = "@type.definition" },
+		["@lsp.type.class"] = { link = "@type" },
+		["@lsp.type.field"] = { link = "@field" },
 		["@lsp.type.event"] = { fg = p.warning_yellow },
-		["@lsp.type.modifier"] = { fg = p.purple_dark, bold = true },
+		["@lsp.type.macro"] = { link = "@macro" },
 
-		-- Additional semantic token types
-		["@lsp.type.keyword"] = { fg = p.purple_dark, bold = true },
-		["@lsp.type.operator"] = { fg = p.accent_primary },
-		["@lsp.type.string"] = { fg = p.info_cyan },
-		["@lsp.type.number"] = { fg = p.warning_yellow },
-		["@lsp.type.regexp"] = { fg = p.error_red },
-		["@lsp.type.comment"] = { fg = p.foreground_soft, italic = true },
+		-- Type modifiers
+		["@lsp.typemod.class.defaultLibrary"] = { link = "@type.builtin" },
+		["@lsp.typemod.enum.defaultLibrary"] = { link = "@type.builtin" },
+		["@lsp.typemod.enumMember.defaultLibrary"] = { link = "@constant.builtin" },
+		["@lsp.typemod.function.defaultLibrary"] = { link = "@function.builtin" },
+		["@lsp.typemod.keyword.async"] = { link = "@keyword.coroutine" },
+		["@lsp.typemod.keyword.injected"] = { link = "@keyword" },
+		["@lsp.typemod.macro.defaultLibrary"] = { link = "@function.builtin" },
+		["@lsp.typemod.method.defaultLibrary"] = { link = "@function.builtin" },
+		["@lsp.typemod.operator.injected"] = { link = "@operator" },
+		["@lsp.typemod.string.injected"] = { link = "@string" },
+		["@lsp.typemod.struct.defaultLibrary"] = { link = "@type.builtin" },
+		["@lsp.typemod.type.defaultLibrary"] = { link = "@type.builtin" },
+		["@lsp.typemod.typeAlias.defaultLibrary"] = { link = "@type.builtin" },
+		["@lsp.typemod.variable.callable"] = { link = "@function" },
+		["@lsp.typemod.variable.defaultLibrary"] = { link = "@variable.builtin" },
+		["@lsp.typemod.variable.injected"] = { link = "@variable" },
+		["@lsp.typemod.variable.static"] = { link = "@constant" },
+		["@lsp.typemod.variable.readonly"] = { link = "@constant" },
+		["@lsp.typemod.property.readonly"] = { fg = p.property_pink, italic = true },
+		["@lsp.typemod.function.readonly"] = { link = "@function" },
+		["@lsp.typemod.method.readonly"] = { link = "@method" },
 
-		-- Modifiers
-		["@lsp.mod.readonly"] = { italic = true },
-		["@lsp.mod.static"] = { bold = true },
+		-- Modifiers (applied on top of base styles)
+		["@lsp.mod.readonly"] = {},
+		["@lsp.mod.static"] = {},
 		["@lsp.mod.deprecated"] = { strikethrough = true },
-		["@lsp.mod.abstract"] = { italic = true },
-		["@lsp.mod.async"] = { italic = true },
+		["@lsp.mod.abstract"] = {},
+		["@lsp.mod.async"] = {},
 		["@lsp.mod.declaration"] = {},
 		["@lsp.mod.definition"] = {},
 		["@lsp.mod.documentation"] = {},
-
-		-- Combined type+modifier for better control
-		["@lsp.typemod.variable.readonly"] = { fg = p.warning_yellow },
-		["@lsp.typemod.property.readonly"] = { fg = p.property_pink, italic = true },
-		["@lsp.typemod.variable.static"] = { fg = p.variable_blue, bold = true },
-		["@lsp.typemod.function.static"] = { fg = p.foreground_dim, bold = true },
-		["@lsp.typemod.method.static"] = { fg = p.foreground_dim, bold = true },
-		["@lsp.typemod.class.abstract"] = { fg = p.foreground_soft, italic = true },
 
 		-- ========================================================================
 		-- GIT SIGNS
