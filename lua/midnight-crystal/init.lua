@@ -1,5 +1,5 @@
 -- ============================================================================
--- Midnight Crystal
+-- Midnight Crystal - A beautiful Neovim colorscheme
 -- ============================================================================
 
 local M = {}
@@ -8,22 +8,22 @@ local M = {}
 -- PALETTE
 -- ============================================================================
 M.palette = {
-	background = "#271224", -- main background
-	background_alt = "#291E37", -- floating windows
-	foreground = "#6391D8", -- main text
-	foreground_dim = "#8FB3FF", -- brighter for comments
-	foreground_soft = "#9A8FEF",
-	accent_primary = "#6391D8", -- main accent
-	accent_secondary = "#493961", -- secondary accent
-	accent_muted = "#3D355F", -- muted accent / visual selection
-	purple_dark = "#BB9AF7", -- keywords (function/end/return)
-	indigo_shadow = "#3D355F",
-	plum_black = "#3B2A46",
-	deep_maroon = "#361B30",
-	error_red = "#F7768E",
-	warning_yellow = "#E0AF68",
-	info_cyan = "#73daca",
-	hint_purple = "#BB9AF7",
+	background = "#271224", -- AFFECTS: Editor background, normal text background
+	background_alt = "#291E37", -- AFFECTS: Floating windows, popups, file tree background
+	foreground = "#6391D8", -- AFFECTS: Normal text, variables, identifiers
+	foreground_dim = "#8FB3FF", -- AFFECTS: **FUNCTIONS** (swapped), methods, constructors
+	foreground_soft = "#9A8FEF", -- AFFECTS: **COMMENTS** (swapped), types, structures
+	accent_primary = "#6391D8", -- AFFECTS: Operators, special chars, current line number
+	accent_secondary = "#493961", -- AFFECTS: Line numbers, borders, indent guides
+	accent_muted = "#3D355F", -- AFFECTS: Visual selection, search highlight background
+	purple_dark = "#BB9AF7", -- AFFECTS: Keywords (if, for, function, return, class, def)
+	indigo_shadow = "#3D355F", -- AFFECTS: (same as accent_muted)
+	plum_black = "#3B2A46", -- AFFECTS: Status line, folded text background
+	deep_maroon = "#361B30", -- AFFECTS: Cursor line, tab line fill
+	error_red = "#F7768E", -- AFFECTS: Errors, delete operations, exceptions
+	warning_yellow = "#E0AF68", -- AFFECTS: Numbers, booleans, constants, warnings
+	info_cyan = "#73daca", -- AFFECTS: Strings, character literals, info messages
+	hint_purple = "#BB9AF7", -- AFFECTS: Macros, preprocessor, hints, TODO comments
 }
 
 -- ============================================================================
@@ -113,7 +113,7 @@ function M.load()
 		-- ========================================================================
 		-- SYNTAX HIGHLIGHTING
 		-- ========================================================================
-		Comment = { fg = p.foreground_dim, italic = true },
+		Comment = { fg = p.foreground_soft, italic = true },
 
 		Constant = { fg = p.warning_yellow },
 		String = { fg = p.info_cyan },
@@ -123,7 +123,7 @@ function M.load()
 		Float = { fg = p.warning_yellow },
 
 		Identifier = { fg = p.foreground },
-		Function = { fg = p.foreground_soft, bold = true },
+		Function = { fg = p.foreground_dim, bold = true },
 
 		Statement = { fg = p.purple_dark, bold = true },
 		Conditional = { fg = p.purple_dark, bold = true },
@@ -168,7 +168,7 @@ function M.load()
 		["@text.emphasis"] = { italic = true },
 		["@text.strong"] = { bold = true },
 
-		["@comment"] = { fg = p.foreground_dim, italic = true },
+		["@comment"] = { fg = p.foreground_soft, italic = true },
 		["@punctuation"] = { fg = p.foreground },
 		["@punctuation.delimiter"] = { fg = p.foreground },
 		["@punctuation.bracket"] = { fg = p.foreground },
@@ -188,16 +188,16 @@ function M.load()
 		["@boolean"] = { fg = p.warning_yellow, bold = true },
 		["@float"] = { fg = p.warning_yellow },
 
-		["@function"] = { fg = p.foreground_soft, bold = true },
-		["@function.builtin"] = { fg = p.foreground_soft, bold = true },
-		["@function.call"] = { fg = p.foreground_soft },
+		["@function"] = { fg = p.foreground_dim, bold = true },
+		["@function.builtin"] = { fg = p.foreground_dim, bold = true },
+		["@function.call"] = { fg = p.foreground_dim },
 		["@function.macro"] = { fg = p.hint_purple },
 		["@parameter"] = { fg = p.foreground },
-		["@method"] = { fg = p.foreground_soft, bold = true },
-		["@method.call"] = { fg = p.foreground_soft },
+		["@method"] = { fg = p.foreground_dim, bold = true },
+		["@method.call"] = { fg = p.foreground_dim },
 		["@field"] = { fg = p.foreground },
 		["@property"] = { fg = p.foreground },
-		["@constructor"] = { fg = p.foreground_soft, bold = true },
+		["@constructor"] = { fg = p.foreground_dim, bold = true },
 
 		["@conditional"] = { fg = p.purple_dark, bold = true },
 		["@repeat"] = { fg = p.purple_dark, bold = true },
