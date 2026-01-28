@@ -18,7 +18,7 @@ M.palette = {
 	-- FOREGROUND / TEXT COLORS
 	-- ========================================================================
 	foreground = "#C0CAF5", -- Default text color, normal code (bright lavender-white)
-	foreground_dim = "#8FB3FF", -- Function names, method names (bright blue)
+	foreground_dim = "#7AA2F7", -- Function names, method names (bright blue)
 	foreground_soft = "#9A8FEF", -- Comments, less important text (purple with italic)
 
 	-- ========================================================================
@@ -51,7 +51,7 @@ M.palette = {
 	-- ========================================================================
 	-- SEMANTIC SYNTAX COLORS (for code elements)
 	-- ========================================================================
-	variable_blue = "#89B4FA", -- Variables, identifiers, local vars (light blue)
+	variable_blue = "#A9B7E5", -- Variables, identifiers, local vars (light blue)
 	parameter_orange = "#FAB387", -- Function parameters, arguments (peach/coral orange)
 	property_pink = "#F5C2E7", -- Object properties, fields, attributes (soft pink)
 	type_teal = "#2AC3DE", -- Types, classes, interfaces, structs, namespaces (bright teal - high contrast!)
