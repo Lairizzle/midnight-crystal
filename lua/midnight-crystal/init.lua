@@ -254,6 +254,7 @@ function M.load()
 		-- ========================================================================
 		-- LSP SEMANTIC TOKENS (for C#, TypeScript, Rust, etc.)
 		-- ========================================================================
+		-- Standard LSP tokens
 		["@lsp.type.class"] = { fg = p.foreground_soft },
 		["@lsp.type.decorator"] = { fg = p.hint_purple },
 		["@lsp.type.enum"] = { fg = p.foreground_soft },
@@ -270,20 +271,36 @@ function M.load()
 		["@lsp.type.typeParameter"] = { fg = p.foreground_soft },
 		["@lsp.type.variable"] = { fg = p.variable_blue },
 
-		-- C# specific
+		-- C# specific (csharp_ls and OmniSharp)
 		["@lsp.type.field"] = { fg = p.property_pink },
 		["@lsp.type.event"] = { fg = p.warning_yellow },
 		["@lsp.type.modifier"] = { fg = p.purple_dark, bold = true },
+
+		-- Additional semantic token types
+		["@lsp.type.keyword"] = { fg = p.purple_dark, bold = true },
+		["@lsp.type.operator"] = { fg = p.accent_primary },
+		["@lsp.type.string"] = { fg = p.info_cyan },
+		["@lsp.type.number"] = { fg = p.warning_yellow },
+		["@lsp.type.regexp"] = { fg = p.error_red },
+		["@lsp.type.comment"] = { fg = p.foreground_soft, italic = true },
 
 		-- Modifiers
 		["@lsp.mod.readonly"] = { italic = true },
 		["@lsp.mod.static"] = { bold = true },
 		["@lsp.mod.deprecated"] = { strikethrough = true },
+		["@lsp.mod.abstract"] = { italic = true },
+		["@lsp.mod.async"] = { italic = true },
+		["@lsp.mod.declaration"] = {},
+		["@lsp.mod.definition"] = {},
+		["@lsp.mod.documentation"] = {},
 
-		-- TypeParameter combinations
+		-- Combined type+modifier for better control
 		["@lsp.typemod.variable.readonly"] = { fg = p.warning_yellow },
 		["@lsp.typemod.property.readonly"] = { fg = p.property_pink, italic = true },
 		["@lsp.typemod.variable.static"] = { fg = p.variable_blue, bold = true },
+		["@lsp.typemod.function.static"] = { fg = p.foreground_dim, bold = true },
+		["@lsp.typemod.method.static"] = { fg = p.foreground_dim, bold = true },
+		["@lsp.typemod.class.abstract"] = { fg = p.foreground_soft, italic = true },
 
 		-- ========================================================================
 		-- GIT SIGNS
