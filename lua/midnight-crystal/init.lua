@@ -223,11 +223,15 @@ function M.load()
 		["@function.builtin"] = { fg = p.foreground_dim, bold = true },
 		["@function.call"] = { fg = p.foreground_dim },
 		["@function.macro"] = { fg = p.hint_purple },
+		["@function.method"] = { fg = p.foreground_dim, bold = true },
+		["@function.method.call"] = { fg = p.foreground_dim },
 		["@parameter"] = { fg = p.parameter_orange },
 		["@method"] = { fg = p.foreground_dim, bold = true },
 		["@method.call"] = { fg = p.foreground_dim },
 		["@field"] = { fg = p.property_pink },
 		["@property"] = { fg = p.property_pink },
+		["@attribute"] = { fg = p.property_pink },
+		["@attribute.builtin"] = { fg = p.hint_purple },
 		["@constructor"] = { fg = p.foreground_dim, bold = true },
 
 		["@conditional"] = { fg = p.purple_dark, bold = true },
@@ -238,23 +242,61 @@ function M.load()
 		["@keyword.function"] = { fg = p.purple_dark, bold = true },
 		["@keyword.operator"] = { fg = p.purple_dark, bold = true },
 		["@keyword.return"] = { fg = p.purple_dark, bold = true },
+		["@keyword.coroutine"] = { fg = p.purple_dark, bold = true },
+		["@keyword.import"] = { fg = p.hint_purple, bold = true },
 		["@exception"] = { fg = p.error_red, bold = true },
 
 		["@variable"] = { fg = p.variable_blue },
 		["@variable.builtin"] = { fg = p.warning_yellow },
+		["@variable.parameter"] = { fg = p.parameter_orange },
+		["@variable.member"] = { fg = p.property_pink },
+
 		["@type"] = { fg = p.type_teal },
 		["@type.definition"] = { fg = p.type_teal },
 		["@type.builtin"] = { fg = p.type_teal, bold = true },
 		["@type.qualifier"] = { fg = p.purple_dark, bold = true },
 		["@storageclass"] = { fg = p.purple_dark, bold = true },
+
+		["@module"] = { fg = p.type_teal },
+		["@module.builtin"] = { fg = p.type_teal, bold = true },
 		["@namespace"] = { fg = p.type_teal },
+
 		["@include"] = { fg = p.hint_purple, bold = true },
 		["@preproc"] = { fg = p.hint_purple },
 		["@debug"] = { fg = p.error_red },
+
 		["@tag"] = { fg = p.accent_primary },
 		["@tag.attribute"] = { fg = p.foreground_soft },
 		["@tag.delimiter"] = { fg = p.foreground },
 
+		-- Markup (for markdown, etc.)
+		["@markup.heading"] = { fg = p.accent_primary, bold = true },
+		["@markup.heading.1"] = { fg = p.accent_primary, bold = true },
+		["@markup.heading.2"] = { fg = p.accent_primary, bold = true },
+		["@markup.heading.3"] = { fg = p.foreground_soft, bold = true },
+		["@markup.heading.4"] = { fg = p.foreground_soft, bold = true },
+		["@markup.heading.5"] = { fg = p.foreground_soft },
+		["@markup.heading.6"] = { fg = p.foreground_soft },
+		["@markup.list"] = { fg = p.accent_primary },
+		["@markup.list.checked"] = { fg = p.info_cyan },
+		["@markup.list.unchecked"] = { fg = p.foreground_dim },
+		["@markup.emphasis"] = { italic = true },
+		["@markup.strong"] = { bold = true },
+		["@markup.strikethrough"] = { strikethrough = true },
+		["@markup.underline"] = { underline = true },
+		["@markup.italic"] = { italic = true },
+		["@markup.quote"] = { fg = p.foreground_dim, italic = true },
+		["@markup.link"] = { fg = p.foreground_soft, underline = true },
+		["@markup.link.url"] = { fg = p.info_cyan, underline = true },
+		["@markup.link.label"] = { fg = p.foreground_soft },
+		["@markup.raw"] = { fg = p.info_cyan },
+		["@markup.raw.block"] = { fg = p.info_cyan },
+		["@markup.math"] = { fg = p.warning_yellow },
+
+		-- Diff
+		["@diff.plus"] = { fg = p.info_cyan },
+		["@diff.minus"] = { fg = p.error_red },
+		["@diff.delta"] = { fg = p.warning_yellow },
 		-- ========================================================================
 		-- LSP
 		-- ========================================================================
