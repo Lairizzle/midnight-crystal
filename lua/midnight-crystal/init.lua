@@ -51,7 +51,7 @@ M.palette = {
 	-- ========================================================================
 	-- SEMANTIC SYNTAX COLORS (for code elements)
 	-- ========================================================================
-	variable_blue = "#8FA3E8", -- Variables, identifiers, local vars (light blue)
+	variable_blue = "#7C96F2", -- Variables, identifiers, local vars (light blue)
 	parameter_orange = "#FAB387", -- Function parameters, arguments (peach/coral orange)
 	property_pink = "#F5C2E7", -- Object properties, fields, attributes (soft pink)
 	type_teal = "#2AC3DE", -- Types, classes, interfaces, structs, namespaces (bright teal - high contrast!)
