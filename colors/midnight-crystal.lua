@@ -3,4 +3,4 @@
 -- This file allows using: colorscheme midnight-crystal
 -- ============================================================================
 
-require("midnight-crystal").load()
+require("midnight-crystal").setup()
